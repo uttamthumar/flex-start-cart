@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 export default function Product({ sectionRefs }) {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [cart, setSetCart] = useState([]);
   const [productList, setProductList] = useState();
   const { isCartExists } = useSelector((state) => state.productData);
@@ -40,13 +41,11 @@ export default function Product({ sectionRefs }) {
   }, []);
 
   useEffect(() => {
-    setSetCart(isCartExists);
-  }, []);
+    if (isCartExists) return setSetCart(isCartExists);
+  }, [isCartExists]);
 
   const fetchProducts = async () => {
-    const res = await axios.get(
-      "http://13.49.51.252/cass/api/beforeauth/get-plan"
-    );
+    const res = await axios.get(`${apiUrl}/beforeauth/get-plan`);
     setProductList(res.data.data);
     dispatch({ type: PRODUCT_LISTS, payload: res.data.data });
   };
