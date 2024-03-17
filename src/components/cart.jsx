@@ -21,17 +21,16 @@ export default function Cart() {
 
   const handlePlus = (id) => {
     const findIndex = cartProductArrays?.find((item) => item.id === id);
-    setCartProductArrays((prev) => {
-      const update = prev.map((item) => {
-        if (item.id === findIndex.id) {
-          return { ...item, qty: item.qty + 1 };
-        } else {
-          return item;
-        }
-      });
-      dispatch({ type: CHECK_CART_QTY, payload: update });
-      return update;
+
+    const update = cartProductArrays.map((item) => {
+      if (item.id === findIndex.id) {
+        return { ...item, qty: item.qty + 1 };
+      } else {
+        return item;
+      }
     });
+    setCartProductArrays(update);
+    dispatch({ type: CHECK_CART_QTY, payload: update });
   };
   const handleMinus = (id) => {
     const findIndex = cartProductArrays?.find((item) => item.id === id);
@@ -40,17 +39,15 @@ export default function Cart() {
       setCartProductArrays(updatedCart);
       dispatch({ type: CHECK_CART_QTY, payload: updatedCart });
     } else {
-      setCartProductArrays((prev) => {
-        const update = prev.map((item) => {
-          if (item.id === findIndex.id) {
-            return { ...item, qty: item.qty - 1 };
-          } else {
-            return item;
-          }
-        });
-        dispatch({ type: CHECK_CART_QTY, payload: update });
-        return update;
+      const update = cartProductArrays.map((item) => {
+        if (item.id === findIndex.id) {
+          return { ...item, qty: item.qty - 1 };
+        } else {
+          return item;
+        }
       });
+      setCartProductArrays(update);
+      dispatch({ type: CHECK_CART_QTY, payload: update });
     }
   };
   const calculation = () => {

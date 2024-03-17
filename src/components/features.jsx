@@ -26,7 +26,7 @@ export default function Features() {
           <Col md="6">
             <Row className="mt-2 align-self-center gy-4">
               {features__card?.map((item, index) => (
-                <Col md={6} className="aos-init aos-animate">
+                <Col key={index} md={6} className="aos-init aos-animate">
                   <div className="card__box">
                     <span>
                       <BiCheck />

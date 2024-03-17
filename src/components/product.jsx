@@ -6,8 +6,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 export default function Product({ sectionRefs }) {
-  // const apiUrl = import.meta.env.VITE_API_URL;
-  const [cart, setSetCart] = useState([]);
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const [cart, setCart] = useState([]);
   const [productList, setProductList] = useState();
   const { isCartExists } = useSelector((state) => state.productData);
 
@@ -18,16 +18,15 @@ export default function Product({ sectionRefs }) {
     findProduct.qty = 1;
     const checkQuantaty = cart?.some(isEsists);
     if (!checkQuantaty) {
-      setSetCart((prev) => {
-        const update = [
-          ...prev,
-          {
-            ...findProduct,
-          },
-        ];
-        dispatch({ type: CHECK_CART_QTY, payload: update });
-        return update;
-      });
+      const update = [
+        ...cart,
+        {
+          ...findProduct,
+        },
+      ];
+      setCart(update);
+      dispatch({ type: CHECK_CART_QTY, payload: update });
+
       toast.success("order added");
     } else {
       toast.error("Item is already in the cart");
@@ -41,13 +40,11 @@ export default function Product({ sectionRefs }) {
   }, []);
 
   useEffect(() => {
-    if (isCartExists) return setSetCart(isCartExists);
+    if (isCartExists) return setCart(isCartExists);
   }, [isCartExists]);
 
   const fetchProducts = async () => {
-    const res = await axios.get(
-      "http://13.49.51.252/cass/api/beforeauth/get-plan"
-    );
+    const res = await axios.get(`${apiUrl}/beforeauth/get-plan`);
     setProductList(res.data.data);
     dispatch({ type: PRODUCT_LISTS, payload: res.data.data });
   };
