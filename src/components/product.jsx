@@ -43,10 +43,11 @@ export default function Product({ sectionRefs }) {
   useEffect(() => {
     if (isCartExists) return setCart(isCartExists);
   }, [isCartExists]);
-
-  const fetchProducts = async () => {
+// Access-Control-Allow-Origin
+const fetchProducts = async () => {
+  const testforhost = await axios.get("https://fakestoreapi.com/products");
+  console.log("-----", testforhost);
     const res = await axios.get(`${apiUrl}/beforeauth/get-plan`);
-    console.log("-----", res);
     setProductList(res.data.data);
     dispatch({ type: PRODUCT_LISTS, payload: res.data.data });
   };
