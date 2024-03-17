@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 export default function Product({ sectionRefs }) {
   const apiUrl = import.meta.env.VITE_API_URL;
+  console.log("------>", apiUrl);
   const [cart, setCart] = useState([]);
   const [productList, setProductList] = useState();
   const { isCartExists } = useSelector((state) => state.productData);
@@ -45,6 +46,7 @@ export default function Product({ sectionRefs }) {
 
   const fetchProducts = async () => {
     const res = await axios.get(`${apiUrl}/beforeauth/get-plan`);
+    console.log("-----", res);
     setProductList(res.data.data);
     dispatch({ type: PRODUCT_LISTS, payload: res.data.data });
   };
