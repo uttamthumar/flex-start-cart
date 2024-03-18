@@ -72,7 +72,7 @@ export default function Product({ sectionRefs }) {
               <div className="product__card">
                 {item.tag.length > 0 && <span className="tag">{item.tag}</span>}
                 <Image
-                  src={item.image}
+                  src={item?.image}
                   alt={item.id}
                   fluid
                   className="img-fluid"
