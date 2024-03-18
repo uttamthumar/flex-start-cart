@@ -4,6 +4,7 @@ import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { CHECK_CART_QTY, PRODUCT_LISTS } from "../redux/action.type";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { productAllData } from "../utils/constant";
 
 export default function Product({ sectionRefs }) {
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -36,21 +37,27 @@ export default function Product({ sectionRefs }) {
 
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
   useEffect(() => {
-    fetchProducts();
+    setProductList(productAllData);
+    dispatch({ type: PRODUCT_LISTS, payload: productAllData });
   }, []);
 
   useEffect(() => {
     if (isCartExists) return setCart(isCartExists);
   }, [isCartExists]);
-// Access-Control-Allow-Origin
-const fetchProducts = async () => {
-  const testforhost = await axios.get("https://fakestoreapi.com/products");
-  console.log("-----", testforhost);
-    const res = await axios.get(`${apiUrl}/beforeauth/get-plan`);
-    setProductList(res.data.data);
-    dispatch({ type: PRODUCT_LISTS, payload: res.data.data });
-  };
+
+
+  // API CALLING //
+  // const fetchProducts = async () => {
+  //   const testforhost = await axios.get("https://fakestoreapi.com/products");
+  //   console.log("-----", testforhost);
+  //     const res = await axios.get(`${apiUrl}/beforeauth/get-plan`);
+  //     setProductList(res.data.data);
+  //     dispatch({ type: PRODUCT_LISTS, payload: res.data.data });
+  //   };
 
   return (
     <div id="product" ref={sectionRefs.product} className="my-5">

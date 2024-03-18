@@ -40,3 +40,49 @@ export const features__card = [
   "Alias possimus",
   "Repellendus mollitia",
 ];
+
+export const productAllData = [
+  {
+    id: 1,
+    title: "Free Plan",
+    currency_symbol: "$",
+    image: "http://13.49.51.252/cass/uploads/default/plan/pricing-free.png",
+    description: "Aida dere \\n Nec feugiat nisl \\n Nulla at volutpat dola",
+    duration: 1,
+    tag: "",
+    price: 0,
+  },
+  {
+    id: 2,
+    title: "Starter Plan",
+    currency_symbol: "$",
+    image: "http://13.49.51.252/cass/uploads/default/plan/pricing-starter.png",
+    description:
+      "Aida dere \\n Nec feugiat nisl \\n Nulla at volutpat dola \\n Pharetra massa",
+    duration: 1,
+    tag: "Featured",
+    price: 19,
+  },
+  {
+    id: 3,
+    title: "Business Plan",
+    currency_symbol: "$",
+    image: "http://13.49.51.252/cass/uploads/default/plan/pricing-business.png",
+    description:
+      "Aida dere \\n Nec feugiat nisl \\n Nulla at volutpat dola \\n Pharetra massa",
+    duration: 1,
+    tag: "",
+    price: 26,
+  },
+  {
+    id: 4,
+    title: "Ultimate Plan",
+    currency_symbol: "$",
+    image: "http://13.49.51.252/cass/uploads/default/plan/pricing-ultimate.png",
+    description:
+      "Aida dere \\n Nec feugiat nisl \\n Nulla at volutpat dola \\n Pharetra massa \\n Massa ultricies mi",
+    duration: 1,
+    tag: "recommended",
+    price: 49,
+  },
+];
